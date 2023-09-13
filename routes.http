@@ -11,3 +11,12 @@ Content-Type: audio/mpeg
 
 < ./example.mp3
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+#@name create-transcription
+POST http://localhost:3333/videos/c94d888e-9922-4b95-ac26-ddabbcfb743a/transcription
+Content-Type: application/json
+
+{
+    "prompt": "Teste do teste significa o quê?"
+}
