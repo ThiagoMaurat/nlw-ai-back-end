@@ -5,7 +5,7 @@ import { uploadVideoRoute } from "./routes/upload-video";
 import { createTranscriptionRoute } from "./routes/create-transcription";
 import { generateAICompletionRoute } from "./routes/generate-ai-completion";
 
-const app = fastify();
+const app = fastify({ requestTimeout: 1000 * 60 * 5 * 70 });
 
 app.register(getAllPromptsRoute);
 app.register(uploadVideoRoute);

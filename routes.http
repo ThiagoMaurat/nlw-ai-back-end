@@ -14,7 +14,7 @@ Content-Type: audio/mpeg
 
 ###
 #@name create-transcription
-POST http://localhost:3333/videos/c94d888e-9922-4b95-ac26-ddabbcfb743a/transcription
+POST http://localhost:3333/videos/f3b9513a-36f5-4d7a-83d0-184f6f3c547e/transcription
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ POST http://localhost:3333/ai/complete
 Content-Type: application/json
 
 {
-    "videoId": "c94d888e-9922-4b95-ac26-ddabbcfb743a",
+    "videoId": "f3b9513a-36f5-4d7a-83d0-184f6f3c547e",
     "template": "Teste do teste: ''{transcription}''",
     "temperature": "0.7"
 }

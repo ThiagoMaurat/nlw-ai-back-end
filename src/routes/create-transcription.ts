@@ -3,11 +3,12 @@ import { z } from "zod";
 import { prisma } from "../lib/prisma";
 import { createReadStream } from "node:fs";
 import { openai } from "../lib/openai";
+import "dotenv/config";
 
 export async function createTranscriptionRoute(app: FastifyInstance) {
   app.post("/videos/:videoId/transcription", async (request, reply) => {
     const paramsSchema = z.object({
-      videoId: z.string(),
+      videoId: z.string().uuid(),
     });
 
     const bodySchema = z.object({
@@ -30,7 +31,7 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
 
     const response = await openai.audio.transcriptions.create({
       file: audiotReadStream,
-      model: "whisper1",
+      model: "whisper-1",
       language: "pt",
       response_format: "json",
       temperature: 0,
