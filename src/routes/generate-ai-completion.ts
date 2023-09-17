@@ -8,13 +8,11 @@ export async function generateAICompletionRoute(app: FastifyInstance) {
   app.post("/ai/complete", async (request, reply) => {
     const paramsSchema = z.object({
       videoId: z.string(),
-      template: z.string(),
+      prompt: z.string(),
       temperature: z.number().min(0).max(10).default(0.5),
     });
 
-    const { temperature, template, videoId } = paramsSchema.parse(
-      request.params
-    );
+    const { temperature, prompt, videoId } = paramsSchema.parse(request.params);
 
     const video = await prisma.video.findUniqueOrThrow({
       where: {
@@ -26,7 +24,7 @@ export async function generateAICompletionRoute(app: FastifyInstance) {
       return reply.status(400).send("Video not found");
     }
 
-    const promptMessage = template.replace(
+    const promptMessage = prompt.replace(
       "{transcription}",
       video.transcription ?? ""
     );
